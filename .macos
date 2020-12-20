@@ -1,0 +1,157 @@
+#!/usr/bin/env bash
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
+
+# Set highlight color to green
+defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
+
+# Set accent color to green
+defaults write NSGlobalDomain AppleAccentColor -int 3
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# Possible values: `WhenScrolling`, `Automatic` and `Always`
+
+# Does this have any affect?
+# Set sidebar icon size to medium
+#defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
+
+# https://www.defaults-write.com/os-x-make-crash-reporter-appear-as-a-notification/
+defaults write com.apple.CrashReporter UseUNC 1
+
+# Show battery percentage
+defaults write com.apple.menuextra.battery ShowPercent -string YES
+
+# TODO Show home directory in Sidebar
+
+
+###############################################################################
+# Dock, Dashboard, and hot corners                                            #
+###############################################################################
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+# https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh
+# System Preferences > Dock > Size:
+defaults write com.apple.dock tilesize -int 18
+
+
+###############################################################################
+# Finder                                                                      #
+###############################################################################
+
+# Finder: show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Finder: show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+###############################################################################
+
+# TODO Correctly sets setting but does not take effect
+# Trackpad: enable tap to click for this user and for the login screen
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+#defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+#defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Trackpad: enable tap to click for this user (and for the login screen?) - logout/in required - works but doesn't show as selected is Sys Prefs
+#defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+
+# TODO does not work
+# enable three finger drag on trackpad
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 1
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
+
+# TODO Four finger show app windows
+
+
+###############################################################################
+# Screenshots                                                                 #
+###############################################################################
+
+# https://www.defaults-write.com/make-os-x-screenshots-without-window-shadows/
+# Take OS X screenshots without window shadows
+defaults write com.apple.screencapture disable-shadow true
+
+# https://www.defaults-write.com/removing-the-date-and-time-stamp-from-screenshots/
+#defaults write com.apple.screencapture “include-date” 0
+
+# https://www.defaults-write.com/change-the-location-screenshots-in-mac-os-x/
+# Change the default location for screenshots in Mac OS X
+defaults write com.apple.screencapture location ~/Downloads
+
+
+###############################################################################
+# Safari & WebKit                                                             #
+###############################################################################
+
+# Privacy: don’t send search queries to Apple
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+
+# Enable the Develop menu and the Web Inspector in Safari
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+
+# Add a context menu item for showing the Web Inspector in web views
+defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+# Warn about fraudulent websites
+defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+# Enable “Do Not Track”
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+
+# https://www.defaults-write.com/enable-the-safari-debug-menu/
+# Enable the Safari debug menu
+defaults write com.apple.Safari IncludeInternalDebugMenu 1
+
+# TODO DuckDuckGo
+
+
+###############################################################################
+# TextEdit                                                                    #
+###############################################################################
+
+# https://www.defaults-write.com/plain-text-default-textedit/
+
+# Use plain text as default format in TextEdit
+defaults write com.apple.TextEdit RichText -int 0
+
+
+###############################################################################
+
+for app in "cfprefsd" \
+	"Dock" \
+	"Finder" \
+	"Safari" \
+	"SystemUIServer" \
+	"TextEdit"; do
+	killall "${app}" &> /dev/null
+done
+echo "Done. Note that some of these changes require a logout/restart to take effect."
