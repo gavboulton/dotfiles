@@ -12,8 +12,12 @@ xcode-select --install
 echo "Installing Brew..."
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+echo "Install aws/tap"
+brew tap aws/tap
+
 echo "Install brews..."
 brew install awscli \
+  aws-sam-cli \
   go \
   ipython \
   jq \
