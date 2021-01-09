@@ -18,6 +18,7 @@ echo "Installing Brew..."
 
 echo "Install brews..."
 brew install awscli \
+  go \
   ipython \
   jq \
   jupyterlab \
