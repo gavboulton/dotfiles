@@ -40,10 +40,13 @@ brew install --cask alfred \
   google-chrome \
   microsoft-excel \
   microsoft-word \
+  postico \
+  postman \
   slack \
   spotify \
   visual-studio-code \
   vlc \
+  whatsapp \
   webstorm \
   zoomus
 
