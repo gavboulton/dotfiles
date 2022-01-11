@@ -1,5 +1,7 @@
 # Dotfiles
 
+Clone this repo into the user root.
+
 My dotfiles:
 1. Oh My Zsh
 1. Software installs
@@ -24,6 +26,12 @@ sh install.sh
 ```
 
 > Make file executable > chmod u+x .macos
+
+## Configgure
+
+```
+sh configure.sh
+```
 
 ## Accessibility settings
 
