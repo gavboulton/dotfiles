@@ -13,6 +13,17 @@ My dotfiles:
 sh oh-my-zsh.sh
 ```
 
+### Zsh Compaudit issues
+
+When opening a new terminal window and receving `zsh compinit: insecure files, run compaudit for list.`, permission must be changed for each directory. Symlinked directories must be run on the source, ie:
+```
+sudo chmod -R root:staff /usr/local/share/zsh
+sudo chmod -R root:staff /usr/local/share/zsh/site-functions
+sudo chown -R root:staff /usr/local/Cellar
+sudo chown -R root:staff /usr/local/Homebrew
+```
+
+
 ## Software installs
 
 ```
@@ -32,6 +43,10 @@ sh install.sh
 ```
 sh configure.sh
 ```
+
+### Jump words in iTerm2
+
+[Use ⌥ ← and ⌥→ to jump forwards/backwards words in iTerm2](https://coderwall.com/p/h6yfda/use-and-to-jump-forwards-backwards-words-in-iterm-2-on-os-x)
 
 ## Accessibility settings
 
