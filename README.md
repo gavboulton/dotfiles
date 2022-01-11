@@ -23,12 +23,25 @@ sudo chown -R root:staff /usr/local/Cellar
 sudo chown -R root:staff /usr/local/Homebrew
 ```
 
+> These may be affected by the permission changes in software installs
 
 ## Software installs
 
+Install from 'main' user account.
 ```
 sh install.sh
 ```
+
+### Permissions
+May need to set Homebrew and Cellar permissions if installs fail
+```
+sudo chown -R $(whoami) /usr/local/var/homebrew
+sudo chown -R $(whoami) /usr/local/Cellar
+```
+
+### Clenaup
+
+Run `brew cleanup` for any compinit errors, ie 'compinit:503: no such file or directory: /usr/local/share/zsh/site-functions/_brew_cask'
 
 ## macOS preferences
 
