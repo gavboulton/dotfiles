@@ -35,6 +35,8 @@ defaults write com.apple.CrashReporter UseUNC 1
 # Show battery percentage
 defaults write com.apple.menuextra.battery ShowPercent -string YES
 
+# TODO Set display to scaled > more space
+
 # TODO Show home directory in Sidebar
 
 
@@ -106,6 +108,16 @@ defaults write com.apple.screencapture location ~/Downloads
 
 
 ###############################################################################
+# iTerm2                                                                      #
+###############################################################################
+
+# TODO Investigate
+# defaults write "com.googlecode.iterm2" "New Bookmarks"."Custom Directory" -string Yes
+
+###############################################################################
+
+
+###############################################################################
 # Safari & WebKit                                                             #
 ###############################################################################
 
@@ -146,6 +158,7 @@ defaults write com.apple.TextEdit RichText -int 0
 
 ###############################################################################
 
+# TODO iTerm2
 for app in "cfprefsd" \
 	"Dock" \
 	"Finder" \

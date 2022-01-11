@@ -19,9 +19,11 @@ echo "Install brews..."
 brew install awscli \
   aws-sam-cli \
   go \
+  hugo \
   ipython \
   jq \
   jupyterlab \
+  kafka \
   kops \
   kubectx \
   kubernetes-cli \
@@ -32,6 +34,7 @@ brew install awscli \
 
 echo "Install casks..."
 brew install --cask alfred \
+  aws-vault \
   brave-browser \
   divvy \
   docker \
@@ -39,9 +42,12 @@ brew install --cask alfred \
   firefox \
   google-chrome \
   microsoft-excel \
+  microsoft-teams \
   microsoft-word \
   postico \
   postman \
+  sequel-pro \
+  signal \
   slack \
   spotify \
   visual-studio-code \
