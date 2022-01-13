@@ -2,6 +2,8 @@
 
 Clone this repo into the user root.
 
+When setting up a new account, configure username and email for Git.
+
 My dotfiles:
 1. Oh My Zsh
 1. Software installs
@@ -14,6 +16,10 @@ sh oh-my-zsh.sh
 ```
 
 ### Zsh Compaudit issues
+
+Ignore Compaudit for subsequent admin users by adding `ZSH_DISABLE_COMPFIX=true` to the top of ~/.zshrc.
+
+Alternatively:
 
 When opening a new terminal window and receving `zsh compinit: insecure files, run compaudit for list.`, permission must be changed for each directory. Symlinked directories must be run on the source, ie:
 ```
