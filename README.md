@@ -15,6 +15,19 @@ My dotfiles:
 sh oh-my-zsh.sh
 ```
 
+### Zsh custom plugins
+
+Custom Zsh plugins should not be added to the plugins array. Instead add:
+
+```
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+```
+above
+```
+source $ZSH/oh-my-zsh.sh
+```
+
 ### Zsh Compaudit issues
 
 Ignore Compaudit for subsequent admin users by adding `ZSH_DISABLE_COMPFIX=true` to the top of ~/.zshrc.
