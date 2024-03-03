@@ -30,7 +30,9 @@ brew install awscli \
   kustomize \
   skaffold \
   telnet \
-  yarn
+  yarn \
+  zsh-autosuggestions \
+  zsh-syntax-highlighting
 
 echo "Install casks..."
 brew install --cask alfred \
