@@ -70,7 +70,7 @@ Run `brew cleanup` for any compinit errors, ie 'compinit:503: no such file or di
 
 > Make file executable > chmod u+x .macos
 
-## Configgure
+## Configure
 
 ```
 sh configure.sh
