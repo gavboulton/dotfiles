@@ -4,3 +4,5 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
 # Conditionally create dev directory in user root
 [ ! -d ~/dev ] && mkdir ~/dev
+# Read, write and execute for the current user only
+chmod 700 ~/dev
