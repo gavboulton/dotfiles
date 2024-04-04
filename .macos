@@ -33,7 +33,7 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 defaults write com.apple.CrashReporter UseUNC 1
 
 # Show battery percentage
-defaults write com.apple.menuextra.battery ShowPercent -string YES
+defaults -currentHost write com.apple.controlcenter.plist BatteryShowPercentage -bool true
 
 # TODO Set display to scaled > more space
 
@@ -50,6 +50,9 @@ defaults write com.apple.dock autohide -bool true
 # https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh
 # System Preferences > Dock > Size:
 defaults write com.apple.dock tilesize -int 18
+
+# Mission Control: Group windows by application
+defaults write com.apple.dock "expose-group-apps" -bool "true" && killall Dock
 
 
 ###############################################################################
@@ -68,6 +71,9 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
+# Finder: column view
+defaults write com.apple.finder "FXPreferredViewStyle" -string "clmv" && killall Finder
+
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -79,14 +85,14 @@ defaults write com.apple.finder ShowPathbar -bool true
 #defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 #defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-# Trackpad: enable tap to click for this user (and for the login screen?) - logout/in required - works but doesn't show as selected is Sys Prefs
-#defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+# Trackpad: enable tap to click for this user (and for the login screen?)
+# logout/in required
+# works but doesn't show as selected is System Setting
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 
-# TODO does not work
-# enable three finger drag on trackpad
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 1
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
+# Trackpad: enable three finger drag on trackpad
+# May need 'Use trackpad for dragging' to be enabled first
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 
 # TODO Four finger show app windows
 
@@ -121,6 +127,8 @@ defaults write com.apple.screencapture location ~/Downloads
 # Safari & WebKit                                                             #
 ###############################################################################
 
+## Give Full Disk Access to iTerm in Privacy & Security settings
+
 # Privacy: don’t send search queries to Apple
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
@@ -142,6 +150,9 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 # https://www.defaults-write.com/enable-the-safari-debug-menu/
 # Enable the Safari debug menu
 defaults write com.apple.Safari IncludeInternalDebugMenu 1
+
+# Show full website URL
+defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true" && killall Safari
 
 # TODO DuckDuckGo
 
@@ -167,4 +178,6 @@ for app in "cfprefsd" \
 	"TextEdit"; do
 	killall "${app}" &> /dev/null
 done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+echo "Done. Note that some of these changes require a logout/restart to take effect. Trying that now..."
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
