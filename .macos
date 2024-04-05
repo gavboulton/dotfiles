@@ -52,7 +52,7 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock tilesize -int 18
 
 # Mission Control: Group windows by application
-defaults write com.apple.dock "expose-group-apps" -bool "true" && killall Dock
+defaults write com.apple.dock "expose-group-apps" -bool "true"
 
 
 ###############################################################################
@@ -72,7 +72,10 @@ defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.finder ShowPathbar -bool true
 
 # Finder: column view
-defaults write com.apple.finder "FXPreferredViewStyle" -string "clmv" && killall Finder
+defaults write com.apple.finder "FXPreferredViewStyle" -string "clmv"
+
+# Finder: keep folders on top
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
 
 
 ###############################################################################
@@ -142,7 +145,7 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 defaults write com.apple.Safari IncludeInternalDebugMenu 1
 
 # Show full website URL
-defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true" && killall Safari
+defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true"
 
 # TODO DuckDuckGo
 
@@ -159,7 +162,6 @@ defaults write com.apple.TextEdit RichText -int 0
 
 ###############################################################################
 
-# TODO iTerm2
 for app in "cfprefsd" \
 	"Dock" \
 	"Finder" \
